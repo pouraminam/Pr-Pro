@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premiere AI Editor - Documentation & Plugin Companion</title>
+  <link rel="stylesheet" href="plugin/styles/spectrum-dark.css">
+  <link rel="stylesheet" href="plugin/styles/panel.css">
+  <link rel="stylesheet" href="plugin/styles/waveform.css">
+  <link rel="stylesheet" href="plugin/styles/transcript.css">
+  <link rel="stylesheet" href="plugin/styles/subtitles.css">
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      overflow-y: auto;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-nav {
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-nav h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .layout-container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    .simulated-premiere {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #181818;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .plugin-dock-frame {
+      width: 400px;
+      border-left: 1px solid #333;
+      background: #1e1e1e;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 16px rgba(0,0,0,0.5);
+    }
+    .premiere-mock-timeline {
+      background: #222;
+      border: 1px solid #383838;
+      border-radius: 6px;
+      padding: 16px;
+    }
+    .track-row {
+      display: flex;
+      align-items: center;
+      height: 36px;
+      background: #2a2a2a;
+      margin-bottom: 4px;
+      border-radius: 4px;
+      overflow: hidden;
+      font-size: 11px;
+    }
+    .track-header {
+      width: 80px;
+      background: #333;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #aaa;
+      border-right: 1px solid #444;
+    }
+    .track-body {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      background: #222;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .clip-block {
+      background: #2b5b84;
+      color: #fff;
+      height: 28px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 11px;
+      border: 1px solid #4182b8;
+    }
+    .clip-audio {
+      background: #2f6b4e;
+      border-color: #43966e;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <h1>
+      <span>🎬 Premiere AI Editor</span>
+      <span class="badge badge-info">v1.0.0 Production Release</span>
+    </h1>
+    <div style="display: flex; gap: 12px; font-size: 12px;">
+      <a href="docs/architecture.md" target="_blank" style="color: #7cc0ff; text-decoration: none;">Architecture</a>
+      <a href="docs/installation.md" target="_blank" style="color: #7cc0ff; text-decoration: none;">Installation</a>
+      <a href="docs/user-guide.md" target="_blank" style="color: #7cc0ff; text-decoration: none;">User Guide</a>
+      <a href="docs/api-compatibility.md" target="_blank" style="color: #7cc0ff; text-decoration: none;">API Compatibility</a>
+    </div>
+  </div>
+
+  <div class="layout-container">
+    <!-- Simulated Premiere Host Area -->
+    <div class="simulated-premiere">
+      <div>
+        <h2 style="font-size: 18px; margin-bottom: 6px;">Local-First Adobe Premiere AI Editing Assistant</h2>
+        <p style="font-size: 12px; color: #aaa; line-height: 1.6;">
+          Automated speech transcription (Faster-Whisper), intelligent silence detection (Silero VAD & Energy),
+          safe timeline cutting (CompoundAction transactions & sequence duplication), and Persian/English bilingual subtitle workflows.
+        </p>
+      </div>
+
+      <div class="premiere-mock-timeline">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px; color: #bbb;">
+          <span>Active Sequence: <strong>Interview_Master_25fps</strong></span>
+          <span>Timecode: <strong id="timeline-tc">00:00:00:00</strong></span>
+        </div>
+        <div class="track-row">
+          <div class="track-header">V1</div>
+          <div class="track-body">
+            <div class="clip-block" style="width: 85%;">Interview_Camera_A.mp4 [25.0 fps]</div>
+          </div>
+        </div>
+        <div class="track-row">
+          <div class="track-header">A1</div>
+          <div class="track-body">
+            <div class="clip-block clip-audio" style="width: 85%;">Boom_Dialogue_Track.wav [48kHz]</div>
+          </div>
+        </div>
+        <div class="track-row">
+          <div class="track-header">A2</div>
+          <div class="track-body">
+            <div class="clip-block clip-audio" style="width: 40%; background: #4a3e2a; border-color: #8c7247;">Background_Ambience.wav</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="card">
+          <div class="card-title">Key Capabilities</div>
+          <ul style="font-size: 11px; line-height: 1.8; color: #bbb; padding-left: 16px;">
+            <li><strong>Local-First Offline Processing:</strong> Zero remote audio upload, no paid cloud APIs.</li>
+            <li><strong>Faster-Whisper & Silero VAD:</strong> High-precision speech activity recognition.</li>
+            <li><strong>Safe Sequence Duplication:</strong> Clones sequence to <code>_AI_Edited</code> preserving originals.</li>
+            <li><strong>Persian & English Subtitles:</strong> Full RTL shaping, \u200c half-space, and offline translation.</li>
+            <li><strong>Zero Subtitle Drift:</strong> Shared time mapping keeps captions aligned with cut sequence.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">Windows 11 Production Packaging</div>
+          <ul style="font-size: 11px; line-height: 1.8; color: #bbb; padding-left: 16px;">
+            <li><strong>Packaged UXP Plugin:</strong> <code>premiere-ai-editor.ccx</code> installable in Premiere Pro v24+.</li>
+            <li><strong>Local Engine Helper:</strong> Standalone Python 3 / CTranslate2 runtime with loopback token security.</li>
+            <li><strong>GUI Installer:</strong> Complete PowerShell / Inno Setup script for automated one-click setup.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Docked Plugin Panel -->
+    <div class="plugin-dock-frame" id="root">
+      <!-- Plugin mounts here -->
+    </div>
+  </div>
+
+  <script type="module" src="plugin/src/index.js"></script>
+</body>
+</html>

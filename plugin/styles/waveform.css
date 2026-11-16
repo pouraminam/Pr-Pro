@@ -1,0 +1,109 @@
+/* Waveform Visualizer Styles */
+.waveform-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #141414;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.waveform-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 11px;
+}
+
+.waveform-viewport {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: crosshair;
+}
+
+#waveform-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.waveform-ruler {
+  height: 18px;
+  background-color: #1a1a1a;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 9px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.waveform-legend {
+  display: flex;
+  gap: 12px;
+  padding: 4px 8px;
+  background-color: var(--bg-primary);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-speech { background-color: #68809a; }
+.legend-cut { background-color: rgba(215, 55, 63, 0.7); }
+.legend-protected { border: 2px solid #268e6c; background: rgba(38, 142, 108, 0.2); }
+.legend-selected { background-color: rgba(20, 115, 230, 0.5); }
+
+/* Silence Region List */
+.silence-list {
+  max-height: 160px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-primary);
+}
+
+.silence-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 11px;
+  transition: background-color 0.1s;
+}
+
+.silence-item:hover {
+  background-color: var(--bg-secondary);
+}
+
+.silence-item.protected {
+  opacity: 0.65;
+  border-left: 3px solid var(--success-color);
+}
+
+.silence-item.disabled {
+  opacity: 0.45;
+}
+
+.silence-time {
+  font-family: monospace;
+  color: var(--text-secondary);
+}
